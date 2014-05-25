@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ingress Portal Route Planner</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/footer.css" rel="stylesheet">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/script.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Portal Route Planner</h1>
+            <form role="form">
+                <div class="form-group">
+                  <label for="portals">Portal URL's</label>
+                  <textarea id="portals" class="form-control" rows="10" maxlength="2000" placeholder="Enter Intel URL's, each separated by a line"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="map">Google Maps URL</label>
+                  <input type="text" class="form-control" id="map" placeholder="Google Maps Route URL" value="">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="mapURL()">Submit</button>
+            </form>
+        </div>
+        <div id="footer">
+            <div class="container">
+                <br/>
+                <p class="text-muted text-right">Created by <a href="mailto:ellis@ellisclayton.info">Ellis Clayton.</a></p>
+                <p class="text-muted text-right">Not affiliated with Google Inc. or any of it's subsidaries.</p>
+            </div>
+        </div>
+    </body>
+</html>
