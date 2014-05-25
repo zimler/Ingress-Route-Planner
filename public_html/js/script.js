@@ -7,6 +7,10 @@ function mapURL() {
         window.alert("At least two Intel URL's required.");
     } else {
         for (var i = 0; i < portalURLs.length; i++) {
+            if (!(reg.test(portalURLs[i]))) {
+                window.alert("Invalid input.");
+                throw new Error("invalid");
+            }
             var result = reg.exec(portalURLs[i]);
             mapURL = mapURL + RegExp.$1 + "," + RegExp.$2 + "/";
         }
