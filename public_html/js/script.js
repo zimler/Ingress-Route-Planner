@@ -8,11 +8,7 @@ function mapURL() {
     } else {
         for (var i = 0; i < portalURLs.length; i++) {
             var result = reg.exec(portalURLs[i]);
-            if (portalURLs.length === (i+1)) {
-                mapURL = mapURL + "@" + RegExp.$1 + "," + RegExp.$2 + "/";
-            } else {
-                mapURL = mapURL + RegExp.$1 + "," + RegExp.$2 + "/";
-            }
+            mapURL = mapURL + RegExp.$1 + "," + RegExp.$2 + "/";
         }
     document.getElementById("map").value = mapURL;
     }
