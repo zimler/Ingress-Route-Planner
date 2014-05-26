@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/footer.css" rel="stylesheet">
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script src="js/script.js"></script>
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -16,19 +16,45 @@
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
             ga('create', 'UA-51329614-1', 'ellisclayton.info');
+            ga('require', 'displayfeatures');
             ga('send', 'pageview');
         </script>
     </head>
     <body>
         <div class="container">
             <h1>Portal Route Planner</h1>
+            <div class="panel-group" id="accordian">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Instructions
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ol>
+                                <li>Click on a portal.</li>
+                                <li>Click on the link chain (<img src="img/chain.png"/>).</li>
+                                <li>Copy the presented URL into the Portal Planner's "Portal URL's" field.</li>
+                                <li>Repeat steps 1-3 for each portal you wish to visit, pasting each URL on to a new line.</li>
+                                <li>Click Submit</li>
+                                <li>Copy the Google Maps URL into a browser address bar and submit</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <form role="form">
                 <div class="form-group">
                   <label for="portals">Portal URL's</label>
                   <textarea id="portals" class="form-control" rows="10" maxlength="2000" placeholder="Enter Intel URL's, each separated by a line"></textarea>
                 </div>
                 <button type="button" class="btn btn-primary" onclick="mapURL()">Submit</button>
+            </form>
                 <hr/>
+                <form>
                 <div class="form-group">
                   <label for="map">Google Maps URL</label>
                   <input type="text" class="form-control" id="map" placeholder="Google Maps Route URL" value="">
@@ -38,8 +64,7 @@
         <div id="footer">
             <div class="container">
                 <br/>
-                <p class="text-muted text-right">Created by <a href="mailto:ellis@ellisclayton.info">Ellis Clayton.</a></p>
-                <p class="text-muted text-right">Not affiliated with Google Inc. or any of it's subsidaries.</p>
+                <p class="text-muted text-right">Created by <a href="mailto:ellis@ellisclayton.info">Ellis Clayton.</a> Not affiliated with Google Inc. or any of it's subsidaries.</p>
             </div>
         </div>
     </body>
