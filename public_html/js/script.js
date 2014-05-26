@@ -23,3 +23,14 @@ function mapURL() {
     document.getElementById("map").value = mapURL;
     }
 }
+
+function openMap() {
+    var win = window.open(document.getElementById("map").value, '_blank');
+    if(win){
+        //Browser has allowed it to be opened
+        win.focus();
+    }else{
+        //Broswer has blocked it
+        alert('Please allow popups for this site');
+    }
+}

@@ -51,11 +51,16 @@
                   <textarea id="portals" class="form-control" rows="10" maxlength="2000" placeholder="Enter Intel URL's, each separated by a line" onclick="mapURL()" onkeyup="mapURL()"></textarea>
                 </div>
             </form>
-                <hr/>
-                <form>
+            <hr/>
+            <form>
                 <div class="form-group">
-                  <label for="map">Google Maps URL</label>
-                  <input type="text" class="form-control" id="map" placeholder="Google Maps Route URL" value="">
+                    <label for="map">Google Maps URL</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="map" placeholder="Google Maps Route URL" value="" onClick="this.setSelectionRange(0, this.value.length)">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" onClick="openMap()">View Route</button>
+                        </span>
+                    </div>
                 </div>
             </form>
         </div>
