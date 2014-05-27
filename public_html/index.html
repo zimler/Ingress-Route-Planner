@@ -37,7 +37,7 @@
                             <ol>
                                 <li>Click on a portal.</li>
                                 <li>Click on the link chain (<img src="img/chain.png"/>).</li>
-                                <li>Copy the presented URL into the Portal Planner's "Portal URL's" field.</li>
+                                <li>Copy the presented URL into the Portal Planner's "Portal URLs" field.</li>
                                 <li>Repeat steps 1-3 for each portal you wish to visit, pasting each URL on to a new line.</li>
                                 <li>Click "View Route" or copy the Google Maps URL into a browser address bar and submit.</li>
                             </ol>
@@ -47,8 +47,8 @@
             </div>
             <form role="form">
                 <div class="form-group has-error" id="validDiv">
-                  <label for="portals" class="form-control-feedback">Portal URL's <span class="glyphicon glyphicon-remove" id="portalValid"></span></label>
-                  <textarea id="portals" class="form-control" rows="10" maxlength="2000" placeholder="Enter Intel URL's, each separated by a line" onclick="mapURL()" onkeyup="mapURL()"></textarea>
+                  <label for="portals" class="form-control-feedback">Portal URLs <span class="glyphicon glyphicon-remove" id="portalValid"></span></label>
+                  <textarea id="portals" class="form-control" rows="10" maxlength="2000" placeholder="Enter Intel URLs, each separated by a line" onclick="mapURL()" onkeyup="mapURL()"></textarea>
                 </div>
             </form>
             <hr/>
@@ -58,7 +58,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="map" placeholder="Google Maps Route URL" value="" onClick="this.setSelectionRange(0, this.value.length)">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" onClick="openMap()">View Route</button>
+                            <button id="mapBtn" class="btn btn-default" type="button" onClick="openMap()" disabled="disabled">View Route</button>
                         </span>
                     </div>
                 </div>

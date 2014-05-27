@@ -35,6 +35,8 @@ function mapURL() {
 function errorMsg() {
     document.getElementById("portalValid").className = "glyphicon glyphicon-remove";
     document.getElementById("validDiv").className = "form-group has-error";
+    document.getElementById("mapBtn").className = "btn btn-default";
+    document.getElementById("mapBtn").disabled = "disabled";
     document.getElementById("map").value = "";
 }
 
@@ -42,6 +44,8 @@ function errorMsg() {
 function successMsg() {
     document.getElementById("portalValid").className = "glyphicon glyphicon-ok";
     document.getElementById("validDiv").className = "form-group has-success";
+    document.getElementById("mapBtn").className = "btn btn-success";
+    document.getElementById("mapBtn").disabled = "";
 }
 
 //Open route URL
