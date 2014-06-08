@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/footer.css" rel="stylesheet">
+        <link href="css/override.css" rel="stylesheet">
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script src="js/script.js"></script>
@@ -22,7 +23,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>Portal Route Planner</h1>
+            <h1>INGRESS PORTAL ROUTE PLANNER</h1>
             <div class="panel-group" id="accordian">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -47,14 +48,13 @@
             </div>
             <form role="form">
                 <div class="form-group has-error" id="validDiv">
-                  <label for="portals" class="form-control-feedback">Portal URLs <span class="glyphicon glyphicon-remove" id="portalValid"></span></label>
+                  <label for="portals" class="form-control-feedback sr-only">Portal URLs <span class="glyphicon glyphicon-remove" id="portalValid"></span></label>
                   <textarea id="portals" class="form-control" rows="10" maxlength="2000" placeholder="Enter Intel URLs, each separated by a line" onclick="mapURL()" onkeyup="mapURL()"></textarea>
                 </div>
             </form>
-            <hr/>
             <form>
                 <div class="form-group">
-                    <label for="map">Google Maps URL</label>
+                    <label for="map" class="sr-only">Google Maps URL</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="map" placeholder="Google Maps Route URL" value="" onClick="this.setSelectionRange(0, this.value.length)">
                         <span class="input-group-btn">
