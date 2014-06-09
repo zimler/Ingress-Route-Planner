@@ -38,6 +38,10 @@ input {
     background-color: #0b0c0d !important;
     border-radius: 0 !important;
 }
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
 textarea, input {
     color: white !important;
     border-radius: 0 !important;
@@ -46,12 +50,13 @@ textarea, input {
     border: 1px #59fbea solid;
 }
 .has-error .form-control {
-    background-color: rgba(169,68,66,0.15)
+    background-color: rgba(169,68,66,0.15);
+    box-shadow: none !important;
 }
-.has-success .form-control {
+.has-success .form-control, .has-success .form-control:focus {
     background-color: #102023;
     border-color: #59fbea;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #59fbea !important;
+    box-shadow: none !important;
 }
 button {
     border-radius: 0 !important;
@@ -59,7 +64,7 @@ button {
 .btn-default[disabled] {
     border: 1px #59fbea solid;
     opacity: 1;
-    background-color: black;
+    background-color: #0b0c0d;
     color: #999;
 }
 .btn-success {
