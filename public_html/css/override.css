@@ -11,6 +11,9 @@ p, div {
     font-family: 'Coda', sans-serif;
     border-radius: 0 !important;
 }
+p {
+    color: #ebbc4a;
+}
 hr {
     color: #59fbea;
     background-color: #59fbea;
@@ -72,4 +75,14 @@ button {
     opacity: 1 !important;
     background-color: #004f4a !important;
     color: #999;
+}
+.checkbox {
+    color: #59fbea;
+}
+#map-canvas {
+    height: 500px;
+    margin: 0px;
+    margin-bottom: 10px;
+    padding: 0px;
+    border: 1px solid #59fbea;
 }

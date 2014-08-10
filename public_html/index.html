@@ -4,15 +4,17 @@
         <title>Ingress Portal Route Planner</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="css/footer.css" rel="stylesheet">
         <link href="css/override.css" rel="stylesheet">
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script src="js/script.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <!-- Google Maps JS API -->
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpXLUG4ql_BmxKhd-T-OQLe8sDFtYWXTA"></script>
-        
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhfFxBcNtzlsI1Q0MJ4LGu40K6FYNP97c"></script>
+
+
+        <script src="js/script.js"></script>
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -31,8 +33,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                INSTRUCTIONS
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="dropSwap()">
+                                INSTRUCTIONS <i id="manual-drop" class="fa fa-chevron-down"></i>
                             </a>
                         </h4>
                     </div>
@@ -50,18 +52,33 @@
                 </div>
             </div>
             <form role="form">
-                <div class="form-group has-error" id="validDiv">
-                  <label for="portals" class="form-control-feedback sr-only">Portal URLs <span class="glyphicon glyphicon-remove" id="portalValid"></span></label>
-                  <textarea id="portals" class="form-control" rows="10" maxlength="2000" placeholder="Enter Intel URLs, each separated by a line" onclick="mapURL()" onkeyup="mapURL()"></textarea>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div class="form-group has-error" id="validDiv">
+                          <label for="portals" class="form-control-feedback sr-only">Portal URLs <span class="glyphicon glyphicon-remove" id="portalValid"></span></label>
+                          <textarea id="portals" class="form-control" rows="10" maxlength="2000" placeholder="Enter Intel URLs, each separated by a line" onkeyup="coordFind()"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <p>Auto-optimise will automatically reorder your waypoints to provide the most efficient route. Note that this does not apply to the first and last waypoints.</p>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked="checked" id="optimal"> Auto-optimise
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-default btn-block" onClick="calcRoute()" id="mapBtn" disabled>Generate Route</button>
+                    </div>
                 </div>
             </form>
+            <div id="map-canvas"></div>
             <form>
                 <div class="form-group">
-                    <label for="map" class="sr-only">Google Maps URL</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="map" placeholder="Google Maps Route URL" value="" onClick="this.setSelectionRange(0, this.value.length)">
                         <span class="input-group-btn">
-                            <button id="mapBtn" class="btn btn-default" type="button" onClick="openMap()" disabled="disabled">View Route</button>
+                            <button id="mapLink" class="btn btn-default" type="button" onClick="openMap()" disabled="disabled" alt="open in Google Maps" title="Open in Google Maps">
+                                <i class="fa fa-external-link"></i>
+                            </button>
                         </span>
                     </div>
                 </div>
