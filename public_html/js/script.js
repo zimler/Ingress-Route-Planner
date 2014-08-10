@@ -44,7 +44,6 @@ function coordFind() {
 
 //Report invalid input to user
 function errorMsg() {
-    waypts = [];
     document.getElementById("portalValid").className = "glyphicon glyphicon-remove";
     document.getElementById("validDiv").className = "form-group has-error";
     document.getElementById("mapBtn").className = "btn btn-default btn-block";
@@ -137,40 +136,37 @@ function calcRoute() {
         travelMode: google.maps.TravelMode.DRIVING
     };
 
-    var optOrder = [];
-
     //Attain route from Google and update map
     directionsService.route(request, function(response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
-            optOrder = response.routes[0].waypoint_order; 
+            var optOrder = response.routes[0].waypoint_order; 
             var route = response.routes[0];
+
+            //Generate map URL
+            var mapURL = "http://maps.google.com/maps/dir/";
+
+            if ((optimal) && (optOrder.length > 0)) {
+                for (var i = 0; i < optOrder.length; i++) {
+                    var waypt = waypts[optOrder[i]].location;
+                    waypt = waypt.toUrlValue();
+                    mapURL = mapURL + waypt + "/";
+                }
+                document.getElementById("map").value = mapURL;
+                successMap();
+            } else {
+                mapURL = mapURL + start.toUrlValue() + "/";
+                for (var i = 0; i < waypts.length; i++) {
+                    var waypt = waypts[i].location;
+                    waypt = waypt.toUrlValue();
+                    mapURL = mapURL + waypt + "/";
+                }
+                mapURL = mapURL + end.toUrlValue() + "/";
+                document.getElementById("map").value = mapURL;
+                successMap();
+            }
         }
     });
-
-    //Generate map URL
-    var mapURL = "http://maps.google.com/maps/dir/";
-
-    window.alert(optOrder.length);
-    if ((optimal) && (optOrder.length > 0)) {
-        for (var i = 0; i < optOrder.length; i++) {
-            var waypt = waypts[optOrder[i]].location;
-            waypt = waypt.toUrlValue();
-            mapURL = mapURL + waypt + "/";
-        }
-        document.getElementById("map").value = mapURL;
-        succcessMap();
-    } else {
-        mapURL = mapURL + start.toUrlValue() + "/";
-        for (var i = 0; i < waypts.length; i++) {
-            var waypt = waypts[i].location;
-            waypt = waypt.toUrlValue();
-            mapURL = mapURL + waypt + "/";
-        }
-        mapURL = mapURL + end.toUrlValue() + "/";
-        document.getElementById("map").value = mapURL;
-        successMap();
-    }
 }
 
 //Load map
