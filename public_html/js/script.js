@@ -144,7 +144,7 @@ function calcRoute() {
             var route = response.routes[0];
 
             //Generate map URL
-            var mapURL = "http://maps.google.com/maps/dir/";
+            var mapURL = "http://maps.google.com/maps/dir/" + start.toUrlValue() + "/";
 
             if ((optimal) && (optOrder.length > 0)) {
                 for (var i = 0; i < optOrder.length; i++) {
@@ -152,10 +152,10 @@ function calcRoute() {
                     waypt = waypt.toUrlValue();
                     mapURL = mapURL + waypt + "/";
                 }
+                mapURL += end.toUrlValue() + "/";
                 document.getElementById("map").value = mapURL;
                 successMap();
             } else {
-                mapURL = mapURL + start.toUrlValue() + "/";
                 for (var i = 0; i < waypts.length; i++) {
                     var waypt = waypts[i].location;
                     waypt = waypt.toUrlValue();
