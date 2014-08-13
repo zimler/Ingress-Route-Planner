@@ -86,3 +86,6 @@ button {
     padding: 0px;
     border: 1px solid #59fbea;
 }
+#actionPanel {
+    margin-bottom: 10px;
+}
