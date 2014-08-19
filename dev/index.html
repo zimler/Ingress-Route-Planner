@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ingress Portal Route Planner</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="route, ingress, planner, trip, route, journey, creator, generator, calculator">
+        <meta name="description" content="Create a Google Maps route from Ingress Intel links.">
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/footer.css" rel="stylesheet">
+        <link href="css/override.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <h1>INGRESS PORTAL ROUTE PLANNER</h1>
+            <div class="panel-group" id="accordian">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="dropSwap()">
+                                INSTRUCTIONS <i id="manual-drop" class="fa fa-chevron-down"></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ol>
+                                <li>Click on a portal.</li>
+                                <li>Click on the link chain (<img src="img/chain.png"/>).</li>
+                                <li>Copy the presented URL into the Portal Planner's Portal URLs field.</li>
+                                <li>Repeat steps 1-3 for each portal you wish to visit, pasting each URL on to a new line.</li>
+                                <li>Set your desired options and click "Generate Route".</li>
+                            </ol>
+                            <ul>
+                                <li>Note that due to limitations of Google Maps, a maximum of 10 points may be used.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form role="form">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group has-error" id="validDiv">
+                          <label for="portals" class="form-control-feedback sr-only">Portal URLs <span class="glyphicon glyphicon-remove" id="portalValid"></span></label>
+                          <textarea id="portals" class="form-control" rows="10" maxlength="2000" placeholder="Enter Intel URLs, each separated by a line" onkeyup="coordFind()"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-2" id="actionPanel">
+                        <p>Auto-optimise will automatically reorder your waypoints to provide the most efficient route. Note that this does not apply to the first and last waypoints.</p>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked="checked" id="optimal"> Auto-optimise
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-default btn-block" onClick="calcRoute()" id="mapBtn" disabled>Generate Route</button>
+                    </div>
+                </div>
+            </form>
+            <div id="map-canvas"></div>
+            <form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="map" placeholder="Google Maps Route URL" value="" onClick="this.setSelectionRange(0, this.value.length)">
+                        <span class="input-group-btn">
+                            <button id="mapLink" class="btn btn-default" type="button" onClick="openMap()" disabled="disabled" alt="open in Google Maps" title="Open in Google Maps">
+                                <i class="fa fa-external-link"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="footer">
+            <div class="container">
+                <br/>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <p class="text-muted text-right">Created by <a href="mailto:ellis@ellisclayton.info">Ellis Clayton.</a> Not affiliated with Google Inc. or any of it's subsidiaries. &nbsp;
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                        ">
+                        <input type="submit" border="0" name="submit" alt="Donate with PayPal — The safer, easier way to pay online." value="Donate" class="btn btn-success" title="Donate to support server costs.">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </body>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <!-- Google Maps JS API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhfFxBcNtzlsI1Q0MJ4LGu40K6FYNP97c"></script>
+    <script src="js/script.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-51329614-1', 'ingressrouteplanner.com');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
+    </script>
+</html>
