@@ -140,8 +140,7 @@ function calcRoute() {
     directionsService.route(request, function(response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
-            var optOrder = response.routes[0].waypoint_order; 
-            var route = response.routes[0];
+            var optOrder = response.routes[0].waypoint_order;
 
             //Generate map URL
             var mapURL = "http://maps.google.com/maps/dir/" + start.toUrlValue() + "/";
