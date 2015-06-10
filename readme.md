@@ -1,8 +1,8 @@
-#Portal Planner - Ingress Route Planner
+# Ingress Route Planner
 
-##Route Optimisation
-V1.2 of PortalPlanner includes, using the Google Maps JavaScript API v3. [API Documentation](https://developers.google.com/maps/documentation/javascript/tutorial).
+Available at [www.ingressrouteplanner.com](https://www.ingressrouteplanner.com)
 
-Maps JS API has been connected to jirble2@gmail.com Google Account, and is only usable when accessed from ingressrouteplanner.com and localhost.
+## Local development
 
-[API Console](https://code.google.com/apis/console)
+IRP source requires [Grunt](http://gruntjs.com/) and [NPM](https://www.npmjs.com/).
+Run `npm install` to download the required packages, `grunt` to perform a one of processing of code (does not run a server), and `grunt serve` to watch for code changes, and run a local server.
